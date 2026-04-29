@@ -23,7 +23,7 @@ $books = $conn->query("SELECT COUNT(*) as total FROM books")->fetch_assoc()['tot
 body{
     margin:0;
     font-family:Segoe UI;
-    background:#f4f8ff;
+    background: #ccccdb;
 }
 
 /* SIDEBAR */

@@ -40,7 +40,7 @@ $totalUsers = $conn->query("SELECT COUNT(*) as total FROM users")->fetch_assoc()
 body{
     margin:0;
     font-family:'Segoe UI', sans-serif;
-    background:#f5f7fb;
+    background:#f9f9fd;
 }
 
 /* SIDEBAR */

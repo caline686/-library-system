@@ -7,7 +7,6 @@ include "db.php";
 <head>
 <title>Library System Home</title>
 
-
 <style>
 *{
     margin:0;
@@ -17,8 +16,7 @@ include "db.php";
 
 body{
     font-family:Arial, sans-serif;
-    background:url("booksonly.png") no-repeat center center fixed;
-    background-size:cover;
+    background:#050538;
     color:white;
 }
 
@@ -30,18 +28,19 @@ body::before{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.55);
+    background:rgba(0,0,0,0.45);
     z-index:-1;
 }
 
 /* HEADER */
 .header{
-    background:linear-gradient(90deg,#003b99,#005eff);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
     padding:18px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(255,255,255,0.15);
 }
 
 .header h2{
@@ -53,11 +52,6 @@ body::before{
     text-decoration:none;
     margin-left:20px;
     font-weight:bold;
-    transition:0.3s;
-}
-
-.header a:hover{
-    color:#d9e8ff;
 }
 
 /* HERO */
@@ -69,7 +63,6 @@ body::before{
 .hero h1{
     font-size:52px;
     margin-bottom:15px;
-    text-shadow:2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero p{
@@ -78,7 +71,7 @@ body::before{
     margin:auto;
 }
 
-/* CARDS */
+/* MAIN FEATURE CARDS */
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -87,18 +80,19 @@ body::before{
 }
 
 .card{
-    background:rgba(255,255,255,0.95);
-    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
     padding:30px 20px;
     text-align:center;
-    color:#003b99;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    cursor:pointer;
-    transition:all 0.3s ease;
+    color:white;
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25);
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.03);
+    transform:translateY(-8px);
 }
 
 .icon{
@@ -112,25 +106,65 @@ body::before{
 }
 
 .card p{
-    color:#444;
+    color:#e5e7eb;
     font-size:16px;
+}
+
+/* EXTRA FEATURES */
+.extra-section{
+    padding:40px;
+}
+
+.extra-title{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:30px;
+}
+
+.extra-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.extra-box{
+    background:rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(14px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.extra-box h3{
+    margin-bottom:12px;
+    font-size:22px;
+}
+
+.extra-box p{
+    color:#d1d5db;
+    line-height:1.6;
+}
+
+.extra-icon{
+    font-size:38px;
+    margin-bottom:12px;
 }
 
 /* INFO BOX */
 .info-box{
     width:85%;
-    margin:20px auto 50px;
-    background:rgba(255,255,255,0.96);
-    color:#222;
-    border-radius:18px;
+    margin:30px auto 50px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    color:white;
+    border-radius:20px;
     padding:30px;
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.2);
 }
 
 .info-box h2{
-    color:#0047ab;
     margin-bottom:15px;
     font-size:30px;
 }
@@ -142,11 +176,11 @@ body::before{
 
 /* FOOTER */
 .footer{
-    background:linear-gradient(90deg,#003b99,#005eff);
+    background:rgba(255,255,255,0.08);
     text-align:center;
     padding:18px;
     font-size:15px;
-    box-shadow:0 -4px 15px rgba(0,0,0,0.3);
+    border-top:1px solid rgba(255,255,255,0.15);
 }
 
 </style>
@@ -154,7 +188,6 @@ body::before{
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
     <h2>📚 Library System</h2>
     <div>
@@ -163,82 +196,89 @@ body::before{
     </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
     <h1>Welcome to Library System</h1>
     <p>Manage books, users, borrowing & fines easily</p>
 </div>
 
-<!-- CARDS -->
 <div class="cards">
-
-    <div class="card" onclick="showDescription('books')">
+    <div class="card">
         <div class="icon">📚</div>
         <h3>Book Management</h3>
-        <p>Organize and track books</p>
+        <p>Organize and monitor books efficiently.</p>
     </div>
 
-    <div class="card" onclick="showDescription('users')">
+    <div class="card">
         <div class="icon">👤</div>
         <h3>User Management</h3>
-        <p>Manage members & staff</p>
+        <p>Manage staff and member accounts securely.</p>
     </div>
 
-    <div class="card" onclick="showDescription('borrow')">
+    <div class="card">
         <div class="icon">🔄</div>
-        <h3>Borrow System</h3>
-        <p>Track borrowing process</p>
+        <h3>Borrowing</h3>
+        <p>Track issued books and due dates.</p>
     </div>
 
-    <div class="card" onclick="showDescription('fine')">
+    <div class="card">
         <div class="icon">💰</div>
-        <h3>Fine System</h3>
-        <p>Handle overdue penalties</p>
+        <h3>Fine Control</h3>
+        <p>Calculate penalties automatically.</p>
     </div>
-
 </div>
 
-<!-- DESCRIPTION BOX -->
-<div id="infoBox" class="info-box">
-    <h2 id="infoTitle">Select a Feature</h2>
-    <p id="infoText">Click any card above to see detailed information about that module.</p>
+<div class="extra-section">
+    <h2 class="extra-title">How the System Works</h2>
+
+    <div class="extra-grid">
+
+        <div class="extra-box">
+            <div class="extra-icon">📖</div>
+            <h3>Book Registration</h3>
+            <p>Books are added into the system with title, author, category, and quantity for easy cataloging.</p>
+        </div>
+
+        <div class="extra-box">
+            <div class="extra-icon">⏳</div>
+            <h3>Borrow Tracking</h3>
+            <p>Every borrowed book is assigned a due date to help librarians monitor returns.</p>
+        </div>
+
+        <div class="extra-box">
+            <div class="extra-icon">⚠️</div>
+            <h3>Fine Processing</h3>
+            <p>If a book is returned late, the system calculates overdue fines automatically.</p>
+        </div>
+
+        <div class="extra-box">
+            <div class="extra-icon">📊</div>
+            <h3>Reports & Analytics</h3>
+            <p>Generate reports about borrowed books, fines collected, and active users.</p>
+        </div>
+
+        <div class="extra-box">
+            <div class="extra-icon">🔒</div>
+            <h3>Secure Access</h3>
+            <p>Role-based login ensures admins and users access only allowed sections.</p>
+        </div>
+
+        <div class="extra-box">
+            <div class="extra-icon">🌐</div>
+            <h3>System Integration</h3>
+            <p>Connect modules together for seamless management of books, users, and transactions.</p>
+        </div>
+
+    </div>
 </div>
 
-<!-- FOOTER -->
+<div class="info-box">
+    <h2>Library Management Made Easy</h2>
+    <p>This platform provides a complete digital solution for managing library resources, improving efficiency, and ensuring accountability in every transaction.</p>
+</div>
+
 <div class="footer">
     © 2026 Library System
 </div>
-
-<script>
-function showDescription(type){
-
-    let title = "";
-    let text = "";
-
-    if(type === "books"){
-        title = "Book Management";
-        text = "This module allows librarians to add, update, categorize, and monitor all books in the system for easy organization.";
-    }
-
-    if(type === "users"){
-        title = "User Management";
-        text = "This feature manages library members and staff accounts, ensuring proper access levels and secure records.";
-    }
-
-    if(type === "borrow"){
-        title = "Borrow System";
-        text = "Track all borrowing transactions, monitor due dates, and maintain accurate records of issued books.";
-    }
-
-    if(type === "fine"){
-        title = "Fine System";
-        text = "Automatically calculate overdue fines and keep payment details for books returned late.";
-    }
-
-    document.getElementById("infoTitle").innerText = title;
-    document.getElementById("infoText").innerText = text;
-}
-</script>
 
 </body>
 </html>
